@@ -1,0 +1,14 @@
+{
+  "name": "exif",
+  "author": "Jacob Seidelin <jseidelin@nihilogic.dk>",
+  "description": "EXIF Reader",
+  "version": "0.1.6",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "main": "exif.js",
+  "license": "MPL",
+  "scripts": [
+    "exif.js"
+  ]
+}

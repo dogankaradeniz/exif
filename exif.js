@@ -643,3 +643,6 @@ var EXIF = (function() {
 
 })();
 
+if (typeof module !== 'undefined') {
+    module.exports = EXIF;
+}
