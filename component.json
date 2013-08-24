@@ -1,7 +1,7 @@
 {
   "name": "exif",
   "author": "Jacob Seidelin <jseidelin@nihilogic.dk>",
-  "description": "EXIF Reader",
+  "description": "JavaScript libarary for reading EXIF image metadata",
   "version": "0.1.6",
   "keywords": [],
   "dependencies": {},
