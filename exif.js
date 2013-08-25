@@ -3,6 +3,8 @@
  * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
  * Licensed under the MPL License [http://www.nihilogic.dk/licenses/mpl-license.txt]
  */
+var BinaryFile = require('./binaryajax').BinaryFile,
+    BinaryAjax = require('./binaryajax').BinaryAjax;
 
 
 var EXIF = (function() {
@@ -643,6 +645,8 @@ var EXIF = (function() {
 
 })();
 
-if (typeof module !== 'undefined') {
-    module.exports = EXIF;
-}
+module.exports = function (file, fn) {
+    EXIF.getData(file, function() {
+        fn(file.exifdata);
+    });
+};

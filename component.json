@@ -9,6 +9,7 @@
   "main": "exif.js",
   "license": "MPL",
   "scripts": [
-    "exif.js"
+    "exif.js",
+    "binaryajax.js"
   ]
 }

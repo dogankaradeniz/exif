@@ -275,3 +275,9 @@ document.write(
 	+ "End Function\r\n"
 	+ "</script>\r\n"
 );
+
+
+module.exports = {
+    BinaryFile: BinaryFile,
+    BinaryAjax: BinaryAjax
+};
