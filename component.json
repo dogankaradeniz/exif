@@ -2,7 +2,7 @@
   "name": "exif",
   "author": "Jacob Seidelin <jseidelin@nihilogic.dk>",
   "description": "JavaScript libarary for reading EXIF image metadata",
-  "version": "0.1.6",
+  "version": "0.0.1",
   "keywords": [],
   "dependencies": {},
   "development": {},
@@ -10,6 +10,6 @@
   "license": "MPL",
   "scripts": [
     "exif.js",
-    "binaryajax.js"
+    "binaryfile.js"
   ]
 }
