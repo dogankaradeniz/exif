@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Javascript EXIF Reader 0.1.6
  * Copyright (c) 2008 Jacob Seidelin, jseidelin@nihilogic.dk, http://blog.nihilogic.dk/
@@ -313,14 +315,14 @@ function findEXIFinJPEG(file) {
         // we could implement handling for other markers here,
         // but we're only looking for 0xFFE1 for EXIF data
 
-        if (marker == 22400) {
+        if (marker === 22400) {
             if (debug) console.log("Found 0xFFE1 marker");
 
             return readEXIFData(file, offset + 4, file.getShortAt(offset+2, true)-2);
 
             // offset += 2 + file.getShortAt(offset+2, true);
 
-        } else if (marker == 225) {
+        } else if (marker === 225) {
             // 0xE1 = Application-specific 1 (for EXIF)
             if (debug) console.log("Found 0xFFE1 marker");
 
@@ -362,7 +364,7 @@ function readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd) {
     switch (type) {
         case 1: // byte, 8-bit unsigned int
         case 7: // undefined, 8-bit byte, value depending on field
-            if (numValues == 1) {
+            if (numValues === 1) {
                 return file.getByteAt(entryOffset + 8, bigEnd);
             } else {
                 offset = numValues > 4 ? valueOffset : (entryOffset + 8);
@@ -378,7 +380,7 @@ function readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd) {
             return file.getStringAt(offset, numValues-1);
 
         case 3: // short, 16 bit int
-            if (numValues == 1) {
+            if (numValues === 1) {
                 return file.getShortAt(entryOffset + 8, bigEnd);
             } else {
                 offset = numValues > 2 ? valueOffset : (entryOffset + 8);
@@ -390,7 +392,7 @@ function readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd) {
             }
 
         case 4: // long, 32 bit int
-            if (numValues == 1) {
+            if (numValues === 1) {
                 return file.getLongAt(entryOffset + 8, bigEnd);
             } else {
                 vals = [];
@@ -401,7 +403,7 @@ function readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd) {
             }
 
         case 5:	// rational = two long values, first is numerator, second is denominator
-            if (numValues == 1) {
+            if (numValues === 1) {
                 numerator = file.getLongAt(valueOffset, bigEnd);
                 denominator = file.getLongAt(valueOffset+4, bigEnd);
                 val = new Number(numerator / denominator);
@@ -421,7 +423,7 @@ function readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd) {
             }
 
         case 9: // slong, 32 bit signed int
-            if (numValues == 1) {
+            if (numValues === 1) {
                 return file.getSLongAt(entryOffset + 8, bigEnd);
             } else {
                 vals = [];
@@ -432,7 +434,7 @@ function readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd) {
             }
 
         case 10: // signed rational, two slongs, first is numerator, second is denominator
-            if (numValues == 1) {
+            if (numValues === 1) {
                 return file.getSLongAt(valueOffset, bigEnd) / file.getSLongAt(valueOffset+4, bigEnd);
             } else {
                 vals = [];
@@ -446,7 +448,7 @@ function readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd) {
 
 
 function readEXIFData(file, start) {
-    if (file.getStringAt(start, 4) != "Exif") {
+    if (file.getStringAt(start, 4) !== "Exif") {
         if (debug) console.log("Not valid EXIF data! " + file.getStringAt(start, 4));
         return false;
     }
@@ -457,9 +459,9 @@ function readEXIFData(file, start) {
         tiffOffset = start + 6;
 
     // test for TIFF validity and endianness
-    if (file.getShortAt(tiffOffset) == 0x4949) {
+    if (file.getShortAt(tiffOffset) === 0x4949) {
         bigEnd = false;
-    } else if (file.getShortAt(tiffOffset) == 0x4D4D) {
+    } else if (file.getShortAt(tiffOffset) === 0x4D4D) {
         bigEnd = true;
     } else {
         if (debug) console.log("Not valid TIFF data! (no 0x4949 or 0x4D4D)");
