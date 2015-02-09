@@ -548,5 +548,6 @@ function getImageData (file, callback) {
             callback(e);
         }
     };
-    fileReader.readAsBinaryString(file);
+    fileReader.readAsArrayBuffer(file);
+    // fileReader.readAsBinaryString(file);
 }
